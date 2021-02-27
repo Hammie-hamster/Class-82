@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>C81</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body class="body_backgorund">
+
+<center>
+	<h1>My First Canvas</h1>
+	<canvas id="myCanvas" width="800" height="600">
+	</canvas>
+	<br>
+	<span>Color - </span>  <input type="text" id="color">
+	<br>
+	<button onclick="clearArea();">Clear</button>
+</center>
+
+<script src="main.js"></script>
+
+<script async src="https://drv.tw/inc/wd.js"></script>
+<script>canvas = document.getElementById("myCanvas");
+    ctx= canvas.getContext("2d");
+    
+    color = "red"; 
+    
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.arc(200, 200, 40 ,0 , 2*Math.PI);
+    ctx.stroke();
+    
+    canvas.addEventListener("mousedown", my_mousedown);
+    
+    function my_mousedown(e)
+    {
+        color = document.getElementById("color").value;
+        console.log(color);
+        
+         mouse_x = e.clientX - canvas.offsetLeft;
+         mouse_y = e.clientY - canvas.offsetTop;
+    
+        console.log("X = " + mouse_x + " ,Y =  " + mouse_y);
+        circle(mouse_x , mouse_y);    
+    }
+    
+    function circle(mouse_x , mouse_y)
+    {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.arc(mouse_x, mouse_y, 40 ,0 , 2*Math.PI);
+    ctx.stroke();
+    }
+    
+    
+    function clearArea()
+    {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    </script>
+    <style>
+        .body_backgorund {
+  background-image: url("https://images.all-free-download.com/images/graphicthumb/painting_background_colorful_splashing_decoration_6829250.jpg");
+  background-position: center;
+  background-size: cover;
+}
+h1
+{
+	color: red; 
+	font-size: 40px;
+}
+
+#myCanvas
+{
+	border-width:10px;
+	background-color: white; 
+	border-style:ridge;
+}
+span
+{
+	font-size: 20px;
+}
+
+    </style>
+</body>
+</html>
